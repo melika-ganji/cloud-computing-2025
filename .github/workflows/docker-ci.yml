@@ -3,7 +3,7 @@ name: Docker Build and Push
 on:
   push:
     branches:
-      - main  # Runs when you push to the main branch
+      - main
   pull_request:
     branches:
       - main
@@ -24,6 +24,8 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/llm-inference-image:latest .
+        working-directory: homeworks/one
+
 
       - name: Push Docker Image to Docker Hub
         run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/llm-inference-image:latest
